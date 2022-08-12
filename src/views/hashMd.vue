@@ -1,0 +1,129 @@
+<template>
+  <div>
+    <pre>
+    <div id="add">
+      定位到这了
+    </div>
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    hash与锚点
+    <a href="#add">这是个锚点</a>
+    <a href="/#/add/user">这是一个hash</a>
+    </pre>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      msg: 'hash与锚点'
+    }
+  },
+
+}
+</script>
+
+<style>
+</style>

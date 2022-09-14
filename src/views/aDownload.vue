@@ -1,25 +1,29 @@
 <template>
   <div>
-    <a :href="url" download> 下载 </a>
+    <a :href="url"
+       download> 下载 </a>
     <!-- 当前地址不跨域，故而可以直接使用 -->
     <hr />
-    <a
-      href="https://img2.baidu.com/it/u=3032299185,3338143701&fm=253&fmt=auto&app=138&f=PNG?w=445&h=298"
-      download
-    >
+    <a href="https://img2.baidu.com/it/u=3032299185,3338143701&fm=253&fmt=auto&app=138&f=PNG?w=445&h=298"
+       download>
       下载失败
       <!-- 此时只可以预览   原因此时 当前连接跨域，因而不能直接下载-->
     </a>
     <hr />
     <a @click="downloadFile"> 外部下载 </a>
     <hr />
-    <a @click="copy('copy')" id="copy"> 你好，点我复制内容 </a>
+    <img ref="img"
+         src="http://store.is.autonavi.com/showpic/9926946396f2b73c676dcc93f07634f9"
+         alt=""
+         referrerpolicy="http://store.is.autonavi.com">
+    <a @click="copy('copy')"
+       id="copy"> 你好，点我复制内容 </a>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       url: require('@/assets/logo.png'),
       msg: 'Welcome to Your Vue.js App',
@@ -30,8 +34,27 @@ export default {
       }
     }
   },
+  mounted () {
+    const canvas = document.createElement('CANVAS')
+    const ctx = canvas.getContext('2d')
+    // let img = this.$refs.img
+    // img = document.createElement('img')
+    let img
+    let downloadedImg = new Image();  // 该写法等同于document.createElement('img')
+    downloadedImg.crossOrigin = "anonymous";  // Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported. 注意：  该语句可以解决此报错  作用是告诉canvas 允许使用跨域图片，并不代表该图片可以跨域，图片的跨域在生产环境必须有服务端支持  开发环境使用浏览器插件即可
+    downloadedImg.addEventListener("load", canvas, false);
+    downloadedImg.src = 'http://store.is.autonavi.com/showpic/9926946396f2b73c676dcc93f07634f9'
+    img = downloadedImg
+    img.onload = () => {
+      canvas.height = img.height
+      canvas.width = img.width
+      ctx.drawImage(img, 0, 0)
+      const dataURL = canvas.toDataURL('image/png')
+      console.log(dataURL);
+    }
+  },
   methods: {
-    downloadFile() {
+    downloadFile () {
       // 立即下载
       let url = this.data.downloadUri
       let fileName = this.data.title
@@ -54,7 +77,7 @@ export default {
       x.send()
     },
     // 实现复制功能
-    async copy(select) {
+    async copy (select) {
       //该方法传选择器
       const oUrl = document.getElementById(select)
       const clipboardObj = navigator.clipboard
@@ -68,7 +91,7 @@ export default {
       alert('复制成功')
     },
     // 第二种实现复制功能的方法
-    copyto(text) {
+    copyto (text) {
       //该方法传复制内容  兼容性更强
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(
@@ -83,7 +106,7 @@ export default {
         this.copy2(text)
       }
     },
-    copy2(text) {
+    copy2 (text) {
       if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
         const range = document.createRange()
         range.selectNode(document.querySelector('.copyTxt'))

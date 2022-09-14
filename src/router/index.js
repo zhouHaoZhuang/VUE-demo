@@ -42,7 +42,7 @@ const router = new VueRouter({
         behavior: 'smooth'
       }
     }
-    // 也可以返回一个 Promise 来得出预期的位置描述
+    // 也可以返回一个 Promise 来得出预期的位置描述  例如：当有路由过渡时，可以返回一个 Promise，在过渡结束时，计算出预期的位置，并返回
     return new Promise((resolve) => {
       let newSavedPosition = savedPosition || {}
       setTimeout(() => {

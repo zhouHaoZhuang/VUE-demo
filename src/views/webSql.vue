@@ -2,7 +2,7 @@
   <div>
     web 数据库
     <div id="status"></div>
-    
+
   </div>
 </template>
 
@@ -15,6 +15,8 @@ export default {
   },
   created () {
     this.createDatabase()
+    let a = { b: 12 }
+    console.log(a?.b ?? 0, '---------');
   },
   methods: {
     createDatabase () {

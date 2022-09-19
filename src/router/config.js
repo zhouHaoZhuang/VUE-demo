@@ -60,7 +60,7 @@ const routes = [
     component: () => import('@/views/InComponents.vue')
   },
   {
-    path: '/routersTest',
+    path: '/routerstest',
     name: '路由演示', //  Named Route '路由演示' has a default child route. When navigating to this named route (:to="{name: '路由演示'}"), the default child route will not be rendered. Remove the name from this route and use the name of the default child route for named links instead.    当路由演示被访问时，默认的子路由不会被渲染。从路由演示中删除名称，并使用默认的子路由的名称作为命名链接。
     component: () => import('@/views/routersTest.vue'),
     beforeEnter: (to, from, next) => {
@@ -87,14 +87,14 @@ const routes = [
         }
       },
       {
-        path: 'routerTest',
+        path: 'tworouter',
         name: '二级路由',
-        component: () => import('@/components/routerTest.vue')
+        component: () => import('@/views/routersTest.vue')
       }
     ]
   },
   {
-    path: '/routersTests/routers', //注意这种写法不会产生路由嵌套，只是一个路由路径改变了
+    path: '/sroutersTest/routers', //注意这种写法不会产生路由嵌套，只是一个路由路径改变了 
     name: '路由测试',
     alias: '/biemingroutersTest', //  /a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样。
     components: {
@@ -134,22 +134,22 @@ const routes = [
   },
   {
     path: '/ocrpic',
-    name: 'web截图（PC）',  
+    name: 'web截图（PC）',
     component: () => import('@/views/OcrpicImg.vue')
   },
   {
     path: '/swiper',
-    name: 'swiper轮播图',  
+    name: 'swiper轮播图',
     component: () => import('@/views/SwiperDemo.vue')
   },
   {
     path: '/weixinssd',
-    name: '微信调用地图',  
+    name: '微信调用地图',
     component: () => import('@/views/WeixinSsd.vue')
   },
   {
     path: '/websql',
-    name: 'web数据库',  
+    name: 'web数据库',
     component: () => import('@/views/webSql.vue')
   }
 ]

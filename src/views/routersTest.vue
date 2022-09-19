@@ -21,10 +21,10 @@
           的回调函数，创建好的组件实例会作为回调函数的参数传入。
         </li>
       </ol>
-      <button  @click="jumptest">
+      <button @click="jumptest">
         跳转路由测试params
       </button>
-      <router-link :to = "{path:'/AttributeDemo',query:{name:'张三',age:12}}">跳转query</router-link>
+      <router-link :to="{path:'/AttributeDemo',query:{name:'张三',age:12}}">跳转query</router-link>
     </div>
     <router-view></router-view>
   </div>
@@ -32,6 +32,7 @@
 
 <script>
 import axios from "@/utils/request";
+import "@/utils/getTest";
 export default {
   name: "routersTest",
   props: {
@@ -39,7 +40,7 @@ export default {
     text: {},
   },
   methods: {
-    jumptest() {
+    jumptest () {
       this.$router.push({
         name: "内置的组件",
         params: {
@@ -49,12 +50,18 @@ export default {
       })
     }
   },
-  mounted() {
+  mounted () {
     console.log(this.$props, "this.$props  a", this.$attrs, "this.$attrs  a");
     console.log(this.$route, "this.$route   a");
     console.log(this.id, "this.id   a", this.text, "this.text   a");
+    
+
+    //  以下两个等式，表明 this.$router 中可以访问到所有的 this.$route 属性和方法 
+    //  因此我们可以直接使用 this.$router.history.current 来替代this.$route 获取到路由的相关信息
+    console.log(this.$router.history.current === this.$route,this.$route); // true
+    console.log(this.$router.history.router === this.$router); // true
   },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter (to, from, next) {
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
@@ -77,11 +84,11 @@ export default {
     // });
 
     // 注意 beforeRouteEnter 是支持给 next 传递回调的唯一守卫。对于 beforeRouteUpdate 和 beforeRouteLeave 来说，this 已经可用了，所以不支持传递回调，因为没有必要了。
-    console.log(to.matched[0].meta,to, from, "beforeRouteEnter------");
+    console.log(to.matched[0].meta, to, from, "beforeRouteEnter------");
     // 一个路由匹配到的所有路由记录会暴露为 $route 对象 (还有在导航守卫中的路由对象) 的 $route.matched 数组。因此，我们需要遍历 $route.matched 来检查路由记录中的 meta 字段。
     next();
   },
-  beforeRouteUpdate(to, from, next) {
+  beforeRouteUpdate (to, from, next) {
     console.log(to, from, "beforeRouteUpdate------");
     // 在当前路由改变，但是该组件被复用时调用
     // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
@@ -92,7 +99,7 @@ export default {
     // 这个离开守卫通常用来禁止用户在还未保存修改前突然离开。该导航可以通过 next(false) 来取消。
     //  next(false)
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     // 导航离开该组件的对应路由时调用
     // 可以访问组件实例 `this`
     console.log(to, from, "beforeRouteLeave------");

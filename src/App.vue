@@ -5,26 +5,20 @@
       <router-link to="/about">About</router-link>
       <router-link to="/expresspdf">导出页面转PDF</router-link>
       <router-link to="/digui">递归组件调用</router-link> -->
-      <router-link
-        v-for="(item, index) in routes"
-        :key="index"
-        :to="item.path"
-      >
+      <router-link v-for="(item, index) in routes"
+                   :key="index"
+                   :to="item.path">
         {{ item.name }}
       </router-link>
     </nav>
     <div class="center">
-      <transition
-        mode="out-in"
-        :name="transitionName"
-      >
+      <transition mode="out-in"
+                  :name="transitionName">
         <router-view id="123" />
         <!-- 当前组件的根组件 -->
       </transition>
-      <router-view
-        name="a"
-        id="666"
-      />
+      <router-view name="a"
+                   id="666" />
       <!-- 命名视图 -->
       <!-- 此处的id相当于  params 传值-->
       <router-view name="b" />
@@ -33,13 +27,14 @@
 </template>
 <script>
 import routes from './router/config'
+
 export default {
-  provide() {
+  provide () {
     return {
       zuData: '我是全局变量'
     }
   },
-  data() {
+  data () {
     return {
       routes,
       a: 1,
@@ -49,12 +44,31 @@ export default {
   // 接着在父组件内
   // watch $route 决定使用哪种过渡
   watch: {
-    $route(to, from) {
+    $route (to, from) {
       console.log(to, from)
       this.transitionName = to.path === from.path ? 'h' : 'v'
     }
   },
-  mounted() {
+  created () {
+    console.log(this.$route, 'router', 'APP获取到当前的路由信息'); // 如果路由懒加载就获取不到
+
+    this.$router.onReady(() => {
+      console.log(this.$route, 'router', 'APP可以获取到当前的路由信息内部的');
+    })
+  },
+  mounted () {
+    console.log(this.$route, 'router', 'APP获取到当前的路由信息'); // 如果路由懒加载就获取不到
+    this.$router.onReady(() => {
+
+      console.log(this.$route.path)
+    });
+    this.$router.onReady(() => {
+      console.log(999999999999);
+      console.log(this.$route, 'router', 'APP可以获取到当前的路由信息内部的');
+    })
+    setTimeout(() => {
+      console.log(this.$route, 'router', 'APP可以获取到当前的路由信息内部的');
+    }, 1000);
     console.log('this.$root', this.$root) // this.$root表示当前组件的根组件
     // 执行npm run serve        BASE_URL: "/" NODE_ENV: "development"
     // 执行npm run serve:pro    BASE_URL: '/' NODE_ENV: 'production', VUE_APP_BASE_URL: http://zhouhaozhuang:8080,

@@ -32,7 +32,7 @@ export default {
     };
   },
   mounted() {
-    document.cookie = "ioiopipoadiasdasdbasdbas"; // 非跨域传递cookie 直接设置cookie即可
+    // document.cookie = "ioiopipoadiasdasdbasdbas"; // 非跨域传递cookie 直接设置cookie即可
     this.getData();
     console.log(requestData);
   },
@@ -46,20 +46,25 @@ export default {
       //   // baseURL: 'http://baidu.com',  // 可以指定域名 该域名会覆盖axios的baseURL
       //   headers: { touke: "12399999999" },
       // })
-      let data = await this.$axios.get("/data.json", {
-        params: {
-          id: 1,
-        },
-        // baseURL: 'http://baidu.com',  // 可以指定域名 该域名会覆盖axios的baseURL
-        headers: { token: "12399999999", ookie: "yasfdasdadyusada------" }, //当前的请求头 会覆盖调 create中的请求头
-        // withCredentials: true     // `withCredentials` 表示跨域请求时是否需要使用凭证
-      });
-      // let data2 = await this.$axios.get("http://localhost:9000/select", {
-      //   withCredentials: true,   //设置跨域的时候传递cookie，需要服务端的配合
+      // let data = await this.$axios.get("/data.json", {
+      //   params: {
+      //     id: 1,
+      //   },
+      //   // baseURL: 'http://baidu.com',  // 可以指定域名 该域名会覆盖axios的baseURL
+      //   headers: { token: "12399999999", ookie: "yasfdasdadyusada------" }, //当前的请求头 会覆盖调 create中的请求头
+      //   // withCredentials: true     // `withCredentials` 表示跨域请求时是否需要使用凭证
       // });
-      // console.log(data2, "data2");
-      this.dataList = data.data.data.list;
-      console.log(data);
+      let data2 = await this.$axios.get("https://www.zhouv.top/select", {
+        withCredentials: true,   //设置跨域的时候传递cookie，需要服务端的配合
+      });
+
+      let data3 = await this.$axios.get("https://www.zhouv.top/text", {
+        withCredentials: true,   //设置跨域的时候传递cookie，需要服务端的配合
+      });
+      console.log(data3);
+      console.log(data2, "data2");
+      // this.dataList = data.data.data.list;
+      // console.log(data);
     },
   },
 };

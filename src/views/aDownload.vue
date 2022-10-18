@@ -77,6 +77,7 @@ export default {
       x.send()
     },
     // 实现复制功能
+    // https://www.itxst.com/clipboardjs/vue2.html   一个复制功能的插件地址
     async copy (select) {
       //该方法传选择器
       const oUrl = document.getElementById(select)

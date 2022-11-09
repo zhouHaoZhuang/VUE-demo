@@ -95,9 +95,10 @@ let baseURL = 'http://' + window.location.host
 let request = axios.create({
     baseURL,
     timeout: 1000,
-    headers: { 'Content-Type': 'application/json', 
-    token: '123456789' 
-  } //自定义请求头
+    headers: {
+        'Content-Type': 'application/json',
+        token: '123456789' 
+    } //自定义请求头
 })
 
 request.interceptors.request.use(

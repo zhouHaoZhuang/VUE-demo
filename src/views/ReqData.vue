@@ -3,14 +3,17 @@
     <transition>
       <div v-if="a">
         <p>请求本地数据</p>
-        <img width="100px" src="@/assets/安德罗斯科金河.jpg" alt="" />
+        <img width="100px"
+             src="@/assets/安德罗斯科金河.jpg"
+             alt="" />
       </div>
     </transition>
     <!-- <br /> -->
     <button @click="a = !a">切换效果</button>
     <!-- of 关键字 和 in 一样的作用 -->
     <transition-group name="fade">
-      <h2 v-for="item of dataList" :key="item.id">
+      <h2 v-for="item of dataList"
+          :key="item.id">
         {{ item.name }}
         {{ item.age }}
       </h2>
@@ -24,20 +27,20 @@ import requestData from "@/static/data.json";
 
 export default {
   name: "ReqData",
-  data() {
+  data () {
     return {
       msg: "请求本地数据",
       dataList: [],
       a: true,
     };
   },
-  mounted() {
+  mounted () {
     // document.cookie = "ioiopipoadiasdasdbasdbas"; // 非跨域传递cookie 直接设置cookie即可
     this.getData();
     console.log(requestData);
   },
   methods: {
-    async getData() {
+    async getData () {
       // http://baidu.com/data.json  此处写完整路径也可以
       // let data = await axios.get('/data.json', {
       //   params: {
@@ -54,15 +57,24 @@ export default {
       //   headers: { token: "12399999999", ookie: "yasfdasdadyusada------" }, //当前的请求头 会覆盖调 create中的请求头
       //   // withCredentials: true     // `withCredentials` 表示跨域请求时是否需要使用凭证
       // });
-      let data2 = await this.$axios.get("https://www.zhouv.top/select", {
-        withCredentials: true,   //设置跨域的时候传递cookie，需要服务端的配合
-      });
+      // let data2 = await this.$axios.get("https://www.zhouv.top/select", {
+      //   withCredentials: true,   //设置跨域的时候传递cookie，需要服务端的配合
+      // });
+      // console.log(data2, "data2");
 
-      let data3 = await this.$axios.get("https://www.zhouv.top/text", {
-        withCredentials: true,   //设置跨域的时候传递cookie，需要服务端的配合
+      let data3 = await this.$axios.post("http://172.26.176.1:3000/api/maidian", {
+        body: {
+          nihao: 123
+        }
       });
       console.log(data3);
-      console.log(data2, "data2");
+      navigator.sendBeacon(`http://172.26.176.1:3000/api/maidian?nihao=123`, JSON.stringify());
+      // if ('sendBeacon' in navigator) {
+      //   let sendOk = navigator.sendBeacon(`${baseUrl}api/access_record/visitLog`, JSON.stringify(data));
+      //   if (sendOk) {
+      //     console.log('发送成功!!!');
+      //   }
+      // }
       // this.dataList = data.data.data.list;
       // console.log(data);
     },

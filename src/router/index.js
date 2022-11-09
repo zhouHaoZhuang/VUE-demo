@@ -19,7 +19,7 @@ const router = new VueRouter({
       redirect: '/'
     }
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior (to, from, savedPosition) {
     // return 期望滚动到哪个的位置
     console.log('to', to, from, savedPosition, 'scrollBehavior')
     // 如果你要模拟“滚动到锚点”的行为：
@@ -78,7 +78,7 @@ router.push('/expresspdf').catch((failure) => {
 // })
 
 router.beforeResolve((to, from, next) => {
-  console.log('to', to)
+  console.log('to', to, 'beforeResolve///////////////')
   console.log('from', from)
   next()
 })

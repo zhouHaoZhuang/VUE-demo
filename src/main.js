@@ -8,6 +8,13 @@ import htmlToPdf from '@/utils/htmlToPdf'
 import axios from '@/utils/request'
 // 
 
+import BaiduMap from 'vue-baidu-map'
+
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: 'x244MREe726zlhlpNLxiSgNevECRRpYq'
+})
+
 Vue.config.productionTip = false
 Vue.use(htmlToPdf)
 Vue.use(ElementUI)

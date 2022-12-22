@@ -22,6 +22,12 @@
       <!-- 命名视图 -->
       <!-- 此处的id相当于  params 传值-->
       <router-view name="b" />
+<!-- 
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" />
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive" /> -->
+
     </div>
   </div>
 </template>

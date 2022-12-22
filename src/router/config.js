@@ -151,6 +151,16 @@ const routes = [
     path: '/websql',
     name: 'web数据库',
     component: () => import('@/views/webSql.vue')
+  },
+  {
+    path: '/baiduMapjssk',
+    name: '百度地图ssk',
+    component: () => import('@/views/BaiduMap.vue')
+  },
+  {
+    path: '/WebbaiduMap',
+    name: '百度地图web',
+    component: () => import('@/views/BaiduMapWeb.vue')
   }
 ]
 
